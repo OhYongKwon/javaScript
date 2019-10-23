@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body id="bdy">
+    <script>
+        var xhtp = new XMLHttpRequest();
+        xhtp.onreadystatechange = function() {
+            if(xhtp.readyState ==4 && xhtp.status ==200){
+                // console.log(this.responseText);
+                var obj = JSON.parse(this.responseText);
+                // console.log(obj)
+                // console.log("obj[0]",obj[0]);
+                // console.log(obj.length)
+                // console.log(obj[0].id);
+
+                //getXML(obj);
+                 getXML2(obj);
+                
+
+            }
+        }
+        function getXML(obj){
+                var tag = "<table border=1>"
+                tag += "<tr><td>id</td><td>first_name</td><td>email</td><td>last_name</td><td>gender</td><td>ip_address</td></tr>";
+                for(var i =0 ; i<obj.length ;i++){
+                tag +="<tr>"
+                tag +="<td>"+obj[i].id+"</td><td>"+obj[i].first_name+"</td><td>"+obj[i].email+"</td>";
+                tag +="<td>"+obj[i].last_name+"</td><td>"+obj[i].gender+"</td><td>"+obj[i].ip_address+"</td>"
+                tag +="</tr>"
+
+                }
+                 tag +="</table>";
+                 document.getElementById('bdy').innerHTML=tag;
+        }
+
+        function getXML2(obj) {
+            var table = document.createElement("table");
+            table.setAttribute("border",1);
+            for(var i = 0;i <obj.length ;i++){
+                var tr =document.createElement("tr");
+                console.log(obj[i]);
+                for(filed in obj[i]){
+                    var td = document.createElement("td");
+                    var val = document.createTextNode(obj[i][filed]);
+                    td.appendChild(val);
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            document.getElementById('bdy').append(table);
+
+
+        }
+        
+
+        
+        
+        xhtp.open("get","MOCK_DATA.json")
+        xhtp.send();
+    </script>
+    
+</body>
+</html>

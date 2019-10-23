@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+
+    <script>
+        $(function () {
+        //     $("#hide").click(function () {
+        //         $("[href]").hide();
+        //     })
+        //     $("#show").click(function () {
+        //         $("[href]").show();
+        //     })
+        // 
+
+        $("button:first").click(function(){
+            console.log(this)
+            $("a[href$=com]").hide();     //^=시작 $=끝
+        });
+        });
+    </script>
+
+</head>
+
+<body>
+    <button id="hide">Hide</button>
+    <button id ="show">Show</button>
+    <p>a paragraph</p>
+    <p>another paragraph</p>
+    <p><a href="http://www.daum.net" target="_blank">Daum</a></p>
+    <p><a href="https://www.naver.com" target="parent">Naver</a></p>
+
+
+
+
+</body>
+
+</html>

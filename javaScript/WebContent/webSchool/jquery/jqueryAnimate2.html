@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("button").on("click", function(){
+                $("#div1").fadeIn().fadeTo("slow",0.1);
+                $("#div2").fadeIn("slow");
+                $("#div3").fadeIn(3000);
+            })
+
+            $("button").eq(1).on("click", function(){
+                $("#div1").fadeOut();
+                $("#div2").fadeOut("slow");
+                $("#div3").fadeOut(3000);
+            })
+
+            $("button").eq(2).on("click", function(){
+                $("#div1").fadeToggle().fadeTo("slow",0.15);
+                $("#div2").fadeToggle("slow").fadeTo("slow",0.5);
+                $("#div3").fadeToggle(3000).fadeTo("slow",0.7);
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <button id>Click to Fade</button>
+    <button>Click to FadeOut</button>
+    <button>Click to Toggle</button>
+    <div id="div1" style="width:80px;height:80px;display:none;background-Color:red">
+    </div><br>
+    <div id="div2" style="width:80px;height:80px;display:none;background-Color:green">
+    </div><br>
+    <div id="div3" style="width:80px;height:80px;display:none;background-Color:blue">
+    </div><br>
+
+
+</body>
+
+</html>

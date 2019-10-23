@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="cal"></div>
+
+    <script>
+        var y = prompt("년도를 설정하시오")
+        var m = prompt("월을 선택하세요")
+        getCal(y,m-1);
+
+        function getCal(y, m) {
+            var l = new Date(y, m, 1); //10월 1일
+            var d = new Date(y, m+1, 0); //10월 31일(마지막날)
+
+            var tag = "<table border=1>"
+            tag += "<caption> <font size='3'> <b>"+l.getFullYear() +"년 "+(l.getMonth()+1)+" 월</b> </FONT>  </caption>";
+            tag += "<tr><th> 일 </th><th> 월 </th><th> 화 </th><th> 수 </th><th> 목 </th><th> 금 </th><th> 토 </th></tr>";
+            tag += "<tr>";
+            for (var i = 1; i < d.getDate()+l.getDay()+1; i++) {
+                    if(i<(l.getDay()+1)){
+                        tag += "<th></th>";
+                    }
+                    else if(i%7 == 0){
+                        tag += "<th>" + (i-l.getDay()) +"</th>";
+                        tag += "</tr>";
+                        tag += "<tr>";
+                    }
+                    else{
+                        tag += "<th>" + (i-l.getDay()) +"</th>";
+                    }
+            }
+            console.log(d.getDay(),d.getDate()+l.getDay()+1);
+            tag += "</tr>";
+            tag += "</table>"
+            document.getElementById('cal').innerHTML = tag;
+        }
+        //console.log(d.getFullYear() + "년" + (d.getMonth() + 1) + "월" + d.getDate() + "일" + d.getDay());
+        // 해당월의 1일부터 마지막(30) <td>날짜</td>
+    </script>
+
+
+</body>
+
+</html>

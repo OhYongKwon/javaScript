@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("button").on("click", function () {
+                $("body table").remove();
+            });
+
+            $("#crtBtn").on("click", function () {
+                newTable2();
+            })
+        })
+
+        
+
+        function newTable() {
+            var table = $("<table>");
+            table.attr({ "id": "tb1", "border": "1" });
+
+            var caption = $("<caption>").text("주소록");;
+            caption.attr({ "align": "top" })
+
+            var tr = $("<tr>");
+            var td1 = $("<th>").text("이름");
+            var td2 = $("<th>").text("나이");
+            var td3 = $("<th>").text("전화번호");
+
+            var tr2 = $("<tr>");
+            var td4 = $("<td>").text("홍길동");
+            var td5 = $("<td>").text("35");
+            var td6 = $("<td>").text("010-1111-1111");
+
+            var tr3 = $("<tr>");
+            var td7 = $("<td>").text("김길동");
+            var td8 = $("<td>").text("40");
+            var td9 = $("<td>").text("010-2222-2222");
+            table.append(caption);
+
+            tr.append(td1, td2, td3);
+            tr2.append(td4, td5, td6);
+            tr3.append(td7, td8, td9);
+
+            var tab = table.append(tr, tr2, tr3);
+
+            $("body").append(tab);
+        }
+
+        function newTable2() {
+            var table = $("<table>");
+            table.attr({ "id": "tb1", "border": "1" });
+
+            var caption = $("<caption>").text("주소록");;
+            caption.attr({ "align": "top" })
+
+            var tr = $("<tr>").attr("align", "center");
+            tr.append(($("<th>")).text("이름"));
+            tr.append(($("<th>")).text("나이"));
+            tr.append(($("<th>")).text("전화번호"));
+            tr.append(($("<th>")).text("삭제"));
+
+            var tr2 = $("<tr>").attr("align", "center")
+            tr2.append(($("<td>")).text("홍길동"));
+            tr2.append(($("<td>")).text("35"));
+            tr2.append(($("<td>")).text("010-1111-1111"));
+            btn = $("<button>").text("Del");
+            tr2.append(($("<td>")).html(btn.click(delFunc)));
+
+            var tr3 = $("<tr>").attr("align", "center")
+            tr3.append(($("<td>")).text("김길동"));
+            tr3.append(($("<td>")).text("40"));
+            tr3.append(($("<td>")).text("010-2222-2222"));
+            btn2 = $("<button>").text("Del");
+            tr3.append(($("<td>")).html(btn2.click(delFunc)));
+
+            table.append(caption);
+            var tab = table.append(tr, tr2, tr3);
+
+            $("body").append(tab);
+        }
+
+        function delFunc() {
+            $(this).parent().parent().remove();
+        }
+
+
+        $(document).ready(function () {
+            $("body").on("click","#tb1", function () {
+                alert("new btn clicked.");
+            });
+
+
+
+        })
+
+            // {
+            //     "mousedown": function () {
+            //         $("#show").html("MouseDown over p1").css("backgroundColor", "red");
+            //     },
+            //     "mouseup": function () {
+            //         $("#show").html("MouseUp over p1").css("backgroundColor", "yellow");
+            //     },
+            //     "mouseenter": function () {
+            //         $("#show").html("MouseUp Enter p1").css("backgroundColor", "green");
+            //     },
+            //     "mouseleave": function () {
+            //         $("#show").html("MouseLeave over p1").css("backgroundColor", "purple");
+            //     }
+
+            // })
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <button id="crtBtn">CreateTable</button>
+
+</body>
+
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+
+<body id="bdy">
+
+    <button onclick="loadXML()">Get XML</button>
+    <p id="showXML"></p>
+
+    <script>
+        function loadXML() {
+            var xhtp = new XMLHttpRequest();
+            xhtp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    getXML(this);
+                }
+            }
+            xhtp.open("get", "cd_catalog.xml");
+            xhtp.send();
+        }
+
+        function getXML(elem) {
+            console.log(elem.responseXML);
+            var xml = elem.responseXML;
+            var cds = xml.getElementsByTagName("CD");
+            // console.log(cds[0].childNodes[1].childNodes[0].nodeValue);
+
+            var $table = document.createElement("table");
+            $table.setAttribute("id", "tbl");
+            $table.setAttribute("border", "1");
+
+            var th1 = document.createElement("th");
+            var val1 = document.createTextNode("Title");
+            th1.appendChild(val1);
+
+            var th2 = document.createElement("th");
+            var val2 = document.createTextNode("Artist");
+            th2.append(val2);
+
+            var th3 = document.createElement("th");
+            var val3 = document.createTextNode("Country");
+            th3.appendChild(val3);
+
+            var th4 = document.createElement("th");
+            var val4 = document.createTextNode("Company");
+            th4.appendChild(val4);
+
+            var th5 = document.createElement("th");
+            var val5 = document.createTextNode("Price");
+            th5.appendChild(val5);
+
+            var th6 = document.createElement("th");
+            var val6 = document.createTextNode("Year");
+            th6.appendChild(val6);
+
+            var tr = document.createElement("tr");
+            tr.append(th1, th2, th3, th4, th5, th6);
+
+            $table.append(tr);
+            document.getElementById("bdy").append($table);
+
+
+
+            for (var i = 0; i < cds.length; i++) {
+                var td1 = document.createElement("td");
+                var tdval1 = document.createTextNode(cds[i].childNodes[1].childNodes[0].nodeValue);
+                td1.appendChild(tdval1);
+
+                var td2 = document.createElement("td");
+                var tdval2 = document.createTextNode(cds[i].childNodes[3].childNodes[0].nodeValue);
+                td2.appendChild(tdval2);
+
+                var td3 = document.createElement("td");
+                var tdval3 = document.createTextNode(cds[i].childNodes[5].childNodes[0].nodeValue);
+                td3.appendChild(tdval3);
+
+                var td4 = document.createElement("td");
+                var tdval4 = document.createTextNode(cds[i].childNodes[7].childNodes[0].nodeValue);
+                td4.appendChild(tdval4);
+
+                var td5 = document.createElement("td");
+                var tdval5 = document.createTextNode(cds[i].childNodes[9].childNodes[0].nodeValue);
+                td5.appendChild(tdval5);
+
+                var td6 = document.createElement("td");
+                var tdval6 = document.createTextNode(cds[i].childNodes[11].childNodes[0].nodeValue);
+                td6.appendChild(tdval6);
+
+                var td7 = document.createElement("button");
+                var tdval7 = document.createTextNode("delete");
+                td7.appendChild(tdval7);
+
+                td7.addEventListener("click", delFunc);
+
+                var rows = document.getElementsByTagName("tr");
+                var rowId = rows.length;
+                td7.setAttribute("id", rowId);
+
+                var tr1 = document.createElement("tr");
+                tr1.setAttribute("id", "tr" + rowId);
+
+
+                tr1.append(td1, td2, td3, td4, td5, td6, td7)
+
+                $table.append(tr1);
+            }
+
+            function delFunc() {
+                console.log(this);
+                this.parentNode.remove();
+            }
+            function showClick() {
+                console.log(this.getAtrribute("id"));
+            }
+
+
+
+        }
+    </script>
+
+</body>
+
+</html>

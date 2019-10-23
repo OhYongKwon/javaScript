@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td> 이름: </td>
+            <td><input id="name" type="text"></td>
+        </tr>
+        <tr>
+            <td> 아이디: </td>
+            <td><input id="id" type="text"></td>
+        </tr>
+        <tr>
+            <td> 비번: </td>
+            <td><input id="psd" type="password"></td>
+        </tr>
+        <tr>
+            <td> 비번확인: </td>
+            <td><input id="psdcheck" type="password"></td>
+        </tr>
+
+    </table>
+
+    <button id="btn">확인</button>
+
+    <p id="display"></p>
+
+    <script>
+        var btn = document.getElementById('btn');
+        btn.addEventListener("click", displayDate);
+
+        function displayDate() {
+            var txt = "입력하신 내용은 </br>"
+            txt += "이름: " + document.getElementById("name").value;
+            txt += "</br> 아이디: " + document.getElementById("id").value;
+            txt += "</br> 비번: " + document.getElementById("psd").value;
+
+            document.getElementById('display').innerHTML = txt;
+            psdcheck();
+            function psdcheck() {
+                var pad = document.getElementById("psd");
+                var psdcheck = document.getElementById("psdcheck");
+                if (document.getElementById("psd").value == document.getElementById("psdcheck").value) {
+                    pad.style.background = "blue";
+                    psdcheck.style.background = "blue";
+                }
+                else {
+                    pad.style.background = "red";
+                    psdcheck.style.background = "red";
+                }
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
