@@ -22,6 +22,10 @@ public class EmpServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//한글깨질때사용
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		PrintWriter out = response.getWriter();
 		EmpDAO dao = new EmpDAO();
 		List<Employee> list = dao.getEmpList();

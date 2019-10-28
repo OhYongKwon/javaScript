@@ -7,8 +7,29 @@
     <title>Document</title>
     <script src="../jquery/jquery.min.js">
     </script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url:"EmpServlet",
+                type:"get",        //xhtp.open("get","EmpServlet");
+                success: function(result){ //xhtp.send();
+                    console.log(result);
+                    var datas = JSON.parse(result);
+                    console.log(datas);
+                    var ul = $("<ul>");
+
+                    for(var i=0;i<datas.length;i++){
+                        ul.append($("<li>").text(datas[i].firstName));
+                    }
+                    $("#show").html(ul);
+
+                }
+            })
+
+        })
+    </script>
 </head>
 <body>
-    
+    <p id="show"></p>
 </body>
 </html>
